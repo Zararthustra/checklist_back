@@ -76,6 +76,14 @@ class CategoryMethods(APIView):
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def patch(self, request, categoryId):
+        category = get_object_or_404(Category, pk=categoryId)
+        serializer = CategorySerializer(category, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CategoryTasksMethods(APIView):
     permission_classes = [IsAuthenticated]
@@ -95,7 +103,6 @@ class TasksMethods(APIView):
     def get(self, request):
         tasks = Task.objects.filter(owner=request.user)
         serializer = TaskSerializer(tasks, many=True)
-        print(serializer.data)
         return Response(serializer.data)
 
     def post(self, request):
