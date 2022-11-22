@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "374d1b0c-d1ec-4619-8eea-0c6336850f33",
+		"name": "Checklist Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18563608"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Retrieve Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/users",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/register",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Retrieve Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/category",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"my category 2\",\r\n    \"color\": \"#333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/category",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/category/:categoryId",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"category",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "52d2760f-14b9-480d-85d3-8b39dda219c3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"#bbb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/category/:categoryId",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"category",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "29708048-0a1f-4da6-af00-c58fd78626cd"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Retrieve all Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/tasks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Category Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/category/:categoryId/tasks",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"category",
+								":categoryId",
+								"tasks"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "3c02e1e5-1505-47b4-af8b-3e54fcbe8f71"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"my task 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/tasks?categoryId=52d2760f-14b9-480d-85d3-8b39dda219c3",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "52d2760f-14b9-480d-85d3-8b39dda219c3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/tasks/:taskId",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"tasks",
+								":taskId"
+							],
+							"variable": [
+								{
+									"key": "taskId",
+									"value": "87337ff7-da74-47e1-89bd-3e0473a82159"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Retrieve Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}{{port}}/{{baseUri}}/token/",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"{{baseUri}}",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
