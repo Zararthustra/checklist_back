@@ -19,7 +19,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
 
-        token['username'] = user.username
+        token["username"] = user.username
 
         return token
 
@@ -27,18 +27,25 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
+
 # _____________________________________________ User
 
 
 class RegisterView(APIView):
     def post(self, request):
         try:
-            User.objects.create_user(username=request.data["username"],
-                                     password=request.data["password"])
-            return Response({"message": "User created successfully"}, status=status.HTTP_201_CREATED)
+            User.objects.create_user(
+                username=request.data["username"], password=request.data["password"]
+            )
+            return Response(
+                {"message": "User created successfully"}, status=status.HTTP_201_CREATED
+            )
         except Exception as e:
             print(e)
-            return Response({"message": "User might already exist."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"message": "User might already exist."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
 
 class UsersMethods(APIView):
@@ -48,6 +55,7 @@ class UsersMethods(APIView):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # _____________________________________________ Category
 
@@ -94,6 +102,7 @@ class CategoryTasksMethods(APIView):
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
 
+
 # _____________________________________________ Task
 
 
@@ -106,7 +115,7 @@ class TasksMethods(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        categoryId = request.query_params['categoryId']
+        categoryId = request.query_params["categoryId"]
         category = get_object_or_404(Category, pk=categoryId)
         serializer = TaskSerializer(data=request.data)
         if serializer.is_valid():
@@ -114,8 +123,17 @@ class TasksMethods(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class TaskMethods(APIView):
     permission_classes = [IsAuthenticated]
+
+    def patch(self, request, taskId):
+        task = get_object_or_404(Task, pk=taskId)
+        serializer = TaskSerializer(task, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, taskId):
         task = get_object_or_404(Task, pk=taskId)

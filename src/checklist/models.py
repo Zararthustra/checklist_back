@@ -10,7 +10,8 @@ class Category(models.Model):
     )
     name = models.CharField(max_length=200)
     color = models.CharField(max_length=50, null=True)
-    isHidden = models.BooleanField(null=True)
+    isHidden = models.BooleanField(default=False)
+    isRecurrent = models.BooleanField(default=False)
 
 
 class Task(models.Model):
@@ -20,3 +21,4 @@ class Task(models.Model):
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200)
+    isDisabled = models.BooleanField(default=False)
