@@ -10,6 +10,7 @@ class Category(models.Model):
     )
     name = models.CharField(max_length=200)
     color = models.CharField(max_length=50, null=True)
+    text_color = models.CharField(max_length=10, null=True, default="black")
     isHidden = models.BooleanField(default=False)
     isRecurrent = models.BooleanField(default=False)
 
