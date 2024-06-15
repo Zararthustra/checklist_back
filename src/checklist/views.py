@@ -57,6 +57,20 @@ class UsersMethods(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class UserMethods(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        try:
+            if request.user.id != pk:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            user = User.objects.get(id=pk)
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
 # _____________________________________________ Category
 
 
