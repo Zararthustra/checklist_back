@@ -124,7 +124,7 @@ class TasksMethods(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        tasks = Task.objects.filter(owner=request.user).order_by("isDisabled")
+        tasks = Task.objects.filter(owner=request.user).order_by("isDisabled", "name")
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
 
